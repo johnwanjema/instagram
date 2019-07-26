@@ -1,0 +1,4 @@
+.env
+.vscode
+start.sh
+virtual/
