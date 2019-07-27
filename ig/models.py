@@ -13,9 +13,14 @@ class Profile(models.Model):
     class Meta:
         ordering = ('user',)
 
+    @classmethod
+    def get_by_id(cls, id):
+        profile = Profile.objects.get(user = id)
+        return profile
+
 
     def __str__(self):
-        return self.profile_photo
+        return self.bio
 
 class Image(models.Model):
     photo = models.ImageField(upload_to='photos')
@@ -29,7 +34,7 @@ class Image(models.Model):
         ordering = ('post_date',)
 
     def __str__(self):
-        return self.photo
+        return self.image_name
 
 class Comment(models.Model):
     comment = models.CharField(max_length=50)

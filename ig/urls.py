@@ -10,7 +10,7 @@ urlpatterns=[
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$',auth_views.logout, {"next_page": '/'}), 
     url(r'^admin/', admin.site.urls),
-    url('profile/', views.profile, name='profile'),
+    url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
     ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
