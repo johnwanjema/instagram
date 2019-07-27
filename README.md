@@ -2,7 +2,7 @@
 
 ## Description
 
-This a personal gallery application that displays my photos for others to see.
+ clone of the website for the popular photo app Instagram
 
 ## Created by
 
@@ -61,7 +61,7 @@ Create a `.env` file and paste paste the following filling where appropriate:
 ```
 SECRET_KEY='342s(s(!hsjd998sde8$=o4$3m!(o+kce2^97kp6#ujhi'
 DEBUG=True #set to false in production
-DB_NAME='gallery'
+DB_NAME='instagram'
 DB_USER='user'
 DB_PASSWORD='password'
 DB_HOST='127.0.0.1'
