@@ -33,6 +33,11 @@ class Image(models.Model):
     class Meta:
         ordering = ('post_date',)
 
+    @classmethod
+    def get_allImages(cls):
+        images = cls.objects.all()
+        return images  
+        
     def __str__(self):
         return self.image_name
 

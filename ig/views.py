@@ -8,7 +8,9 @@ from .email import send_welcome_email
 from .models import User,Profile,Comment,Image
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    images = Image.get_allImages()
+    print(images)
+    return render(request, 'index.html',{'images':images})
 
 
 def profile(request,username):
