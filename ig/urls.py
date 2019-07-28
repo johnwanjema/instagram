@@ -14,6 +14,7 @@ urlpatterns=[
     url(r'^admin/', admin.site.urls),
     url('profile/', views.index, name='profile'),
     url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
+    url(r'^image/(?P<image_id>\d+)', views.image, name='image'),
     url(r'^upload/$', views.upload_image, name='upload_image'),
     ]
 if settings.DEBUG:
