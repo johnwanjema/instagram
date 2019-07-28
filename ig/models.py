@@ -37,6 +37,11 @@ class Image(models.Model):
     def get_allImages(cls):
         images = cls.objects.all()
         return images  
+
+    @classmethod
+    def get_image_id(cls, id):
+        image = Image.objects.get(pk=id)
+        return image
         
     def __str__(self):
         return self.image_name
@@ -49,6 +54,11 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ('posted_on',)
+
+    @classmethod
+    def get_comments_by_images(cls, id):
+        comments = Comment.objects.filter(image__pk = id)
+        return comments
 
     def __str__(self):
         return self.comment
