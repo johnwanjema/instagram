@@ -10,6 +10,11 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
 
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
     class Meta:
         ordering = ('user',)
 
@@ -38,10 +43,17 @@ class Image(models.Model):
     class Meta:
         ordering = ('post_date',)
 
+    def delete_image(self):
+        self.delete()       
+
+    def save_image(self):
+        self.save()
+
     @classmethod
     def get_allImages(cls):
         images = cls.objects.all()
-        return images  
+        return images
+    
 
     @classmethod
     def get_image_id(cls, id):
