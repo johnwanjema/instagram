@@ -3,6 +3,28 @@
 <div class="container">
     <h1>profile</h1>
     <p><a href="{% url 'upload_image' %}">Add Image</a></p>
+    <li class="list-inline-item">
+        <a href="#" class="btn btn-primary">Follow</a>
+    </li>
+    <li class="list-inline-item">
+        <span class="font-weight-bold">{{images|length}} </span> Posts
+    </li>
+    <div class="row user-images">
+        {% for img in images %}
+
+        <div class="col-md-4">
+            <!-- Card -->
+            <div class="card">
+                <!-- Card image -->
+                <img class="card-img-top" height="250px" width="600px" src="{{img.photo.url}}" alt="Card image cap">
+            </div><br>
+        </div><br>
+        {% empty %}
+        <div class="col-md-12">
+            <h2>Upload images</h2>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {%endblock%}

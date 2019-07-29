@@ -19,7 +19,9 @@ def profile(request, username):
     profile = User.objects.get(username=username)
     user_details = Profile.get_by_id(profile.id)
     print(user_details.user)
-    return render(request, 'profile.html', {'user_details': user_details, })
+    images = Image.get_profile_images(profile.id)
+    print(images)
+    return render(request, 'profile.html', {'user_details': user_details,'images': images })
 
 
 def signup(request):

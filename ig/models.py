@@ -47,6 +47,11 @@ class Image(models.Model):
     def get_image_id(cls, id):
         image = Image.objects.get(pk=id)
         return image
+    
+    @classmethod
+    def get_profile_images(cls, profile):
+        images = Image.objects.filter(profile__pk = profile)
+        return images
         
     def __str__(self):
         return self.image_name
