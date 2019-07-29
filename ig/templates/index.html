@@ -21,10 +21,12 @@
                     <h4 class="font-weight-bold card-title"></h4>
                     <!-- Text -->
                     <h3>{{image.image_caption}}</h3>
-                    <li class="list-inline-item">
-                        <a href="{% url 'image' image_id=image.id %}">qwerty<i class="fa fa-comment-o fa-2x"
-                                aria-hidden="true"></i></a>
-                    </li>
+                </div>
+                <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+                    <ul class="list-unstyled list-inline font-small">
+                        <li class="list-inline-item pr-2"><a href="{% url 'image' image_id=image.id %}"
+                                class="white-text"><i class="far fa-comments pr-1"></i>Comments</a></li>
+                    </ul>
                 </div>
             </div><br>
         </div>{% endfor %}
