@@ -74,3 +74,16 @@ def image(request, image_id):
     return render(request, 'image.html', {'image': image, 'form': form, 'comments': comments})
 
 
+def search(request):
+    if 'search' in request.GET and request.GET["search"]:
+        search_term = request.GET.get("search")
+        print(search_term)
+        searched_profile = Profile.search_profile(search_term)
+        print(searched_profile)
+        message = f"{search_term}"
+        return render(request, 'search.html',{"message":message,"profiles": searched_profile})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
+

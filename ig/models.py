@@ -17,6 +17,11 @@ class Profile(models.Model):
     def get_by_id(cls, id):
         profile = Profile.objects.get(user = id)
         return profile
+    
+    @classmethod
+    def search_profile(cls,search_term):
+        profile = Profile.objects.filter(user__username__icontains = search_term)
+        return profile
 
 
     def __str__(self):
