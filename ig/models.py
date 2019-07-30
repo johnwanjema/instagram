@@ -24,6 +24,11 @@ class Profile(models.Model):
         return profile
     
     @classmethod
+    def filter_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
+        
+    @classmethod
     def search_profile(cls,search_term):
         profile = Profile.objects.filter(user__username__icontains = search_term)
         return profile

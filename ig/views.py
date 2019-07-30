@@ -1,27 +1,31 @@
 from django.shortcuts import render, redirect
 from .models import Comment, Profile, Image
 from django.contrib.auth.models import User
-from .forms import SignupForm, ImageForm, CommentForm
+from .forms import SignupForm, ImageForm, CommentForm,ProfileForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
 from .models import User, Profile, Comment, Image
 # Create your views here.
 
-
+@login_required(login_url='/accounts/login')
 def index(request):
     images = Image.get_allImages()
     print(images)
     return render(request, 'index.html', {'images': images})
 
-
 def profile(request, username):
     profile = User.objects.get(username=username)
-    user_details = Profile.get_by_id(profile.id)
-    print(user_details.user)
+    print(profile)
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
     images = Image.get_profile_images(profile.id)
     print(images)
-    return render(request, 'profile.html', {'user_details': user_details,'images': images })
+    return render(request, 'profile.html', {'profile':profile, 'profile_details':profile_details, 'images':images})
+
+
 
 
 def signup(request):
@@ -87,5 +91,4 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
-
 
