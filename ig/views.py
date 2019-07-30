@@ -19,8 +19,10 @@ def profile(request, username):
     print(profile)
     try:
         profile_details = Profile.get_by_id(profile.id)
+        print(profile_details)
     except:
         profile_details = Profile.filter_by_id(profile.id)
+        print(profile_details)
     images = Image.get_profile_images(profile.id)
     print(images)
     return render(request, 'profile.html', {'profile':profile, 'profile_details':profile_details, 'images':images})
@@ -79,7 +81,7 @@ def image(request, image_id):
 
     return render(request, 'image.html', {'image': image, 'form': form, 'comments': comments})
 
-
+@login_required(login_url='/accounts/login')
 def search(request):
     if 'search' in request.GET and request.GET["search"]:
         search_term = request.GET.get("search")
@@ -91,4 +93,18 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+@login_required(login_url='/accounts/login')
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            return redirect('edit_profile')
+    else:
+        form = ProfileForm()
+
+    return render(request, 'edit_profile.html', {'form':form})
 

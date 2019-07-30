@@ -17,6 +17,7 @@ urlpatterns=[
     url(r'^image/(?P<image_id>\d+)', views.image, name='image'),
     url(r'^upload/$', views.upload_image, name='upload_image'),
     url(r'^search/', views.search, name='search'),
+    url(r'^accounts/edit/',views.edit_profile, name='edit_profile'),
     ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
